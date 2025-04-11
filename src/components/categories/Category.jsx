@@ -94,7 +94,7 @@ const Category = ({ category, removeCategory }) => {
 
             <div className="flex justify-center gap-4">
               <button
-                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-blue-700"
                 onClick={deleteCategory}
               >
                 نعم، احذف

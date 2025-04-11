@@ -65,7 +65,7 @@ const ProductsListing = () => {
           {visibleCount < filteredItems.length && (
             <div className="text-center mt-4">
               <button
-                className="bg-red-800 text-white px-4 py-2 rounded active:bg-black"
+                className="bg-blue-800 text-white px-4 py-2 rounded active:bg-black"
                 onClick={handleLoadMore}
               >
                 عرض المزيد

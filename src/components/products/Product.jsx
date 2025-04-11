@@ -79,7 +79,7 @@ const Product = ({ product }) => {
             <div className="mb-1">
               {product.name}
               {product.main_category_id && (
-                <p className="inline-block border rounded-full text-xs p-1 bg-red-800 text-gray-300 mx-1">
+                <p className="inline-block border rounded-full text-xs p-1 bg-blue-800 text-gray-300 mx-1">
                   {product.main_category_id.name}
                 </p>
               )}
@@ -144,7 +144,7 @@ const Product = ({ product }) => {
                   <FaEyeSlash
                     size={30}
                     color="gray"
-                    className={`cursor-pointer ${loading && "opacity-50" }`}
+                    className={`cursor-pointer ${loading && "opacity-50"}`}
                     onClick={!loading ? hideItem : null}
                   />
                 ) : (
@@ -179,7 +179,7 @@ const Product = ({ product }) => {
 
             <div className="flex justify-center gap-4">
               <button
-                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-blue-700"
                 onClick={() => deleteProduct()}
               >
                 نعم، احذف

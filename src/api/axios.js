@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://abomariamvapestorebackend.onrender.com",
+  baseURL: "https://dubai-group-gallery.vercel.app/",
   timeout: 300000,
   headers: {
     "Content-Type": "application/json",

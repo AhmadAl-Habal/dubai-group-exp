@@ -8,7 +8,7 @@ const AllProductsSection = () => {
 
   return (
     <section>
-      <h2 className="text-xl font-bold bg-red-800 mb-2 text-center py-2 rounded-full">
+      <h2 className="text-xl font-bold bg-blue-800 mb-2 text-center py-2 rounded-full">
         جميع المنتجات
       </h2>
       <div className="flex flex-row-reverse justify-end items-center px-2 text-xs">
