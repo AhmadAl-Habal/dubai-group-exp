@@ -145,16 +145,16 @@ const Whatsapp = ({ accounts }) => {
                     className="flex items-center justify-between bg-black bg-opacity-40 p-3 rounded"
                   >
                     <div>
-                      <p className="font-bold">{account.name}</p>
+                      <p className="font-bold whitespace-break-all">{account.name}</p>
                       <p className="text-sm">
                         <a
                           href={account.link}
-                          className="text-red-400 underline"
+                          className="text-red-400 underline whitespace-break-all"
                         >
                           {account.link}
                         </a>
                       </p>
-                      <p className="text-sm">{account.phone_number}</p>
+                      <p className="text-sm whitespace-break-all">{account.phone_number}</p>
                     </div>
                     <button
                       onClick={() => deleteProfile(index)}
