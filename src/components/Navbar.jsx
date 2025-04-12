@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar.jsx";
-import logo from "../assets/logo.webp";
+import logo from "../assets/dubailogo.jpg";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const Navbar = () => {
               src={logo}
               alt="React Jobs"
             />
-            <p className="font-bold text-xs">Global E-Comerce</p>
+            <p className="font-bold text-xs">Dubai Group</p>
           </Link>
         </div>
 

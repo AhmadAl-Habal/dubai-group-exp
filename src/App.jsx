@@ -21,7 +21,7 @@ import ProductsPage from "./pages/products/ProductsPage.jsx";
 import AddNewCategoryPage from "./pages/categories/AddNewCategoryPage.jsx";
 import EditCategoryPage from "./pages/categories/EditCategoryPage.jsx";
 import WelcomeSpinner from "./components/WelcomeSpinner.jsx";
-import motionBg2 from "./assets/motion2.webp";
+import motionBg2 from "./assets/motion2.jpg";
 
 // Animated Routes Component
 const AnimatedRoutes = () => {

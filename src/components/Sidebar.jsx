@@ -12,7 +12,7 @@ const Sidebar = ({ isOpen, toggleSidebar, token }) => {
       >
         {/* Background Image with Opacity */}
         <div
-          className="absolute inset-0 bg-black bg-cover bg-center z-0"
+          className="absolute inset-0 bg-blue-500 bg-cover bg-center z-0"
           // style={{
           //   backgroundImage: `url(${motionBg2})`,
           //   opacity: 0.8,

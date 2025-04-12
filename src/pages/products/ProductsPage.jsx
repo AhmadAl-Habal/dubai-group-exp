@@ -33,6 +33,7 @@ const ProductsPage = () => {
           getSubCategories(),
           getProductsByCategory(id),
         ]);
+console.log(categoryData.name);
 
         setCategoryDetails(categoryData);
         setOffersCategory(categoryData.name.includes("عروض"));

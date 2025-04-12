@@ -54,11 +54,11 @@ const WelcomeSpinner = ({ motionBg, onDataFetched }) => {
             className="text-5xl md:text-7xl font-extrabold italic"
             style={{ fontFamily: "Great Vibes, cursive" }}
           >
-            Global E-Commerce
+            Dubai Group Laptops
           </h1>
 
           <p className="text-lg md:text-2xl mt-4 uppercase tracking-widest">
-            Shopping is a need, eCommerce is a lifestyle
+          Your next laptop is just a click away
           </p>
         </div>
       </motion.div>
