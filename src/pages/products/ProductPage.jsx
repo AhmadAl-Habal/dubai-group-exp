@@ -166,7 +166,7 @@ const ProductPage = () => {
                 )}
                 <a
                   onClick={() => setPopupView(true)}
-                  className="block text-center bg-red-500 hover:bg-blue-600 transition duration-200 text-white font-bold py-2 rounded-lg cursor-pointer"
+                  className="block text-center bg-blue-500 hover:bg-blue-600 transition duration-200 text-white font-bold py-2 rounded-lg cursor-pointer"
                 >
                   أطلب الآن
                 </a>

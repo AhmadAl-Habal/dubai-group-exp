@@ -224,7 +224,7 @@ const AddNewProduct = () => {
                         </Link>
                         <button
                           type="button"
-                          className="bg-red-500 text-white p-1 rounded-full text-xs"
+                          className="bg-blue-500 text-white p-1 rounded-full text-xs"
                           onClick={() => {
                             navigate(`/edit-category/${selectedCategoryId}`);
                           }}
@@ -290,7 +290,7 @@ const AddNewProduct = () => {
                   checked={watch("hidden", false)}
                   onCheckedChange={(value) => setValue("hidden", value)}
                   className={`w-12 h-6 flex items-center bg-gray-300 rounded-full p-1 transition duration-300 ${
-                    watch("hidden") ? "bg-green-500" : "bg-red-500"
+                    watch("hidden") ? "bg-green-500" : "bg-blue-500"
                   }`}
                 >
                   <div
