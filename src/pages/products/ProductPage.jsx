@@ -143,12 +143,12 @@ const ProductPage = () => {
                 <div className="mb-4">
                   <p className="font-bold text-lg mb-2">الصنف:</p>
                   {productDetails.main_category_id && (
-                    <span className="inline-block bg-red-600 text-gray-200 text-sm px-3 py-1 rounded-full">
+                    <span className="inline-block bg-blue-600 text-gray-200 text-sm px-3 py-1 rounded-full">
                       {productDetails.main_category_id.name}
                     </span>
                   )}
                   {productDetails.sub_category_id && (
-                    <span className="inline-block bg-red-600 text-gray-200 text-sm px-3 py-1 rounded-full">
+                    <span className="inline-block bg-blue-600 text-gray-200 text-sm px-3 py-1 rounded-full">
                       {productDetails.sub_category_id.name}
                     </span>
                   )}
@@ -166,7 +166,7 @@ const ProductPage = () => {
                 )}
                 <a
                   onClick={() => setPopupView(true)}
-                  className="block text-center bg-red-500 hover:bg-red-600 transition duration-200 text-white font-bold py-2 rounded-lg cursor-pointer"
+                  className="block text-center bg-red-500 hover:bg-blue-600 transition duration-200 text-white font-bold py-2 rounded-lg cursor-pointer"
                 >
                   أطلب الآن
                 </a>
@@ -211,8 +211,10 @@ const ProductPage = () => {
                           <p className="font-bold">{account.name}</p>
                           <p className="text-sm">{account.phone_number}+</p>
                         </div>
-                        <button className="bg-red-600 text-white py-1 px-2 rounded">
-                          <a href={account.link}>تواصل من هنا</a>
+                        <button className="bg-blue-600 text-white py-1 px-2 rounded">
+                          <a href={account.link} target="_blank">
+                            تواصل من هنا
+                          </a>
                         </button>
                       </li>
                     ))}

@@ -123,7 +123,7 @@ const FAQ = ({ question, answer, images, id }) => {
 
             <div className="flex justify-center gap-4">
               <button
-                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500"
                 onClick={() => deleteFAQ()}
               >
                 نعم، احذف

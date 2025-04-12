@@ -138,7 +138,7 @@ const AddNewCategoryPage = () => {
         <div className="flex mt-5">
           <button
             type="submit"
-            className="bg-red-600 text-white px-4 py-1 rounded mr-5"
+            className="bg-blue-600 text-white px-4 py-1 rounded mr-5"
             disabled={loading}
           >
             {loading ? "Loading..." : "Create"}

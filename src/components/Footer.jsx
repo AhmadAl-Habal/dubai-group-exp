@@ -28,9 +28,9 @@ const Footer = () => {
     <div className="fixed bottom-0 left-0 w-full z-20">
       {" "}
       {/* Lower z-index */}
-      <footer className="bg-blue-800 p-1 flex justify-between items-center">
+      <footer className="bg-blue-500 p-1 flex justify-between items-center">
         <div className="w-full flex justify-between items-center gap-x-2">
-          <div className="flex items-center gap-x-2">
+          <div className="flex items-center gap-x-4">
             <img
               className="h-[30px] w-[30px] rounded-full cursor-pointer"
               src={logo}

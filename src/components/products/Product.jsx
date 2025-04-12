@@ -65,7 +65,7 @@ const Product = ({ product }) => {
         ref={productRef}
         className={`transform transition-all duration-500 ease-in-out ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        } flex flex-col justify-center items-center border border-white rounded-lg ${hidden ? "bg-gray-500 " : "bg-white"} p-2 shadow-lg`}
+        } flex flex-col justify-center items-center border border-white rounded-lg ${hidden ? "bg-gray-400 " : "bg-white"} p-2 shadow-lg`}
       >
         <Link to={`/product/${product._id}`}>
           <img
@@ -79,7 +79,7 @@ const Product = ({ product }) => {
             <div className="mb-1">
               {product.name}
               {product.main_category_id && (
-                <p className="inline-block border rounded-full text-xs p-1 bg-blue-800 text-gray-300 mx-1">
+                <p className="inline-block border rounded-full text-xs p-1 bg-red-500 text-gray-300 mx-1">
                   {product.main_category_id.name}
                 </p>
               )}
@@ -124,38 +124,44 @@ const Product = ({ product }) => {
             )}
 
             {token && (
-              <div className="flex justify-center items-center gap-5 mt-5">
-                <MdDelete
-                  className="cursor-pointer"
-                  color="red"
-                  onClick={() => setPopupView(true)}
-                  size={30}
-                />
-
-                <Link to={`/edit-product/${product._id}`}>
-                  <FaEdit
-                    size={30}
-                    color="#d0bf4c"
+              <>
+                {" "}
+                <div className="px-1 mt-2 text-sm">
+                  <p>Quantity: +99</p>
+                </div>
+                <div className="flex justify-center items-end gap-5 mt-5">
+                  <MdDelete
                     className="cursor-pointer"
+                    color="red"
+                    onClick={() => setPopupView(true)}
+                    size={30}
                   />
-                </Link>
 
-                {hidden ? (
-                  <FaEyeSlash
-                    size={30}
-                    color="gray"
-                    className={`cursor-pointer ${loading && "opacity-50"}`}
-                    onClick={!loading ? hideItem : null}
-                  />
-                ) : (
-                  <FaEye
-                    size={30}
-                    color="green"
-                    className={`cursor-pointer ${loading ? "opacity-50" : ""}`}
-                    onClick={!loading ? hideItem : null}
-                  />
-                )}
-              </div>
+                  <Link to={`/edit-product/${product._id}`}>
+                    <FaEdit
+                      size={30}
+                      color="#d0bf4c"
+                      className="cursor-pointer"
+                    />
+                  </Link>
+
+                  {hidden ? (
+                    <FaEyeSlash
+                      size={30}
+                      color="gray"
+                      className={`cursor-pointer ${loading && "opacity-50"}`}
+                      onClick={!loading ? hideItem : null}
+                    />
+                  ) : (
+                    <FaEye
+                      size={30}
+                      color="green"
+                      className={`cursor-pointer ${loading ? "opacity-50" : ""}`}
+                      onClick={!loading ? hideItem : null}
+                    />
+                  )}
+                </div>{" "}
+              </>
             )}
           </div>
         </div>
@@ -179,7 +185,7 @@ const Product = ({ product }) => {
 
             <div className="flex justify-center gap-4">
               <button
-                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500"
                 onClick={() => deleteProduct()}
               >
                 نعم، احذف

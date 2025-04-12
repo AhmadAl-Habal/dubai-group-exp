@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 w-full z-50">
-      <nav className="bg-blue-800 p-1 flex justify-between items-center">
+      <nav className="bg-blue-500 p-1 flex justify-between items-center">
         {/* Left Side: Sidebar Toggle & Logo */}
         <div className="flex items-center">
           <button

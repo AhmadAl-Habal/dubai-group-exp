@@ -108,7 +108,7 @@ const SettingsPage = () => {
 
               <button
                 className={`text-white ml-2 p-1 rounded ${
-                  loading ? "bg-red-400 cursor-not-allowed" : "bg-red-600"
+                  loading ? "bg-red-400 cursor-not-allowed" : "bg-blue-600"
                 }`}
                 onClick={ChangeDollarValue}
                 disabled={loading}
@@ -134,7 +134,7 @@ const SettingsPage = () => {
 
               <button
                 className={`text-white ml-2 p-1 rounded ${
-                  loading ? "bg-red-400 cursor-not-allowed" : "bg-red-600"
+                  loading ? "bg-red-400 cursor-not-allowed" : "bg-blue-600"
                 }`}
                 onClick={changeAboutUs}
                 disabled={loading}
@@ -155,7 +155,7 @@ const SettingsPage = () => {
 
               <button
                 className={`text-white ml-2 p-1 rounded ${
-                  loading ? "bg-red-400 cursor-not-allowed" : "bg-red-600"
+                  loading ? "bg-red-400 cursor-not-allowed" : "bg-blue-600"
                 }`}
                 onClick={() => handleChangeLink("facebook", facebookLink)}
                 disabled={loading}
@@ -176,7 +176,7 @@ const SettingsPage = () => {
 
               <button
                 className={`text-white ml-2 p-1 rounded ${
-                  loading ? "bg-red-400 cursor-not-allowed" : "bg-red-600"
+                  loading ? "bg-red-400 cursor-not-allowed" : "bg-blue-600"
                 }`}
                 onClick={() => handleChangeLink("telegram", telegramLink)}
                 disabled={loading}
@@ -197,7 +197,7 @@ const SettingsPage = () => {
 
               <button
                 className={`text-white ml-2 p-1 rounded ${
-                  loading ? "bg-red-400 cursor-not-allowed" : "bg-red-600"
+                  loading ? "bg-red-400 cursor-not-allowed" : "bg-blue-600"
                 }`}
                 onClick={() =>
                   handleChangeLink("whatsapp_channel", whatsappChannelLink)
@@ -220,7 +220,7 @@ const SettingsPage = () => {
 
               <button
                 className={`text-white ml-2 p-1 rounded ${
-                  loading ? "bg-red-400 cursor-not-allowed" : "bg-red-600"
+                  loading ? "bg-red-400 cursor-not-allowed" : "bg-blue-600"
                 }`}
                 onClick={() => handleChangeLink("instagram", instagramLink)}
                 disabled={loading}
@@ -241,7 +241,7 @@ const SettingsPage = () => {
 
               <button
                 className={`text-white ml-2 p-1 rounded ${
-                  loading ? "bg-red-400 cursor-not-allowed" : "bg-red-600"
+                  loading ? "bg-red-400 cursor-not-allowed" : "bg-blue-600"
                 }`}
                 onClick={() => handleChangeLink("youtube", youtubeLink)}
                 disabled={loading}

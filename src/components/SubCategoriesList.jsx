@@ -129,7 +129,7 @@ const SubcategoriesList = ({ refresh, setRefresh, category }) => {
             <div className="flex mt-5">
               <button
                 type="submit"
-                className="bg-red-600 text-white px-4 py-1 rounded mr-5"
+                className="bg-blue-600 text-white px-4 py-1 rounded mr-5"
                 disabled={loading}
               >
                 {loading ? "Loading..." : "Create"}
@@ -158,7 +158,7 @@ const SubcategoriesList = ({ refresh, setRefresh, category }) => {
 
                     setPopupView(true);
                   }}
-                  className="bg-red-600 text-white py-1 px-3 rounded"
+                  className="bg-blue-600 text-white py-1 px-3 rounded"
                 >
                   Delete
                 </button>
@@ -184,7 +184,7 @@ const SubcategoriesList = ({ refresh, setRefresh, category }) => {
 
             <div className="flex justify-center gap-4">
               <button
-                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500"
                 onClick={() => deleteSubCategory(selectedSub._id)}
               >
                 نعم، احذف

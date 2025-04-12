@@ -101,7 +101,9 @@ console.log(categoryData.name);
           <Spinner />
         ) : (
           <>
-            <div dir="rtl" className="mb-10">
+            <div 
+            // dir="rtl" 
+            className="mb-10">
               <p className="text-white text-lg">{categoryDetails?.name}</p>
               <p className="text-gray-500">{categoryDetails?.description}</p>
             </div>

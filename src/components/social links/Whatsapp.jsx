@@ -123,7 +123,7 @@ const Whatsapp = ({ accounts }) => {
 
             <button
               type="submit"
-              className="w-full bg-red-600 text-white py-2 rounded"
+              className="w-full bg-blue-600 text-white py-2 rounded"
             >
               {loading ? "Loading..." : "Add Profile"}
             </button>
@@ -158,7 +158,7 @@ const Whatsapp = ({ accounts }) => {
                     </div>
                     <button
                       onClick={() => deleteProfile(index)}
-                      className="bg-red-600 text-white py-1 px-3 rounded"
+                      className="bg-blue-600 text-white py-1 px-3 rounded"
                     >
                       Delete
                     </button>

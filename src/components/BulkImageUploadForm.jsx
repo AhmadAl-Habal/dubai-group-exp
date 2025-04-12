@@ -74,7 +74,7 @@ const ImageUploadForm = ({ inputDetails, endpoint, refresh, setRefresh }) => {
       <div className="flex items-center">
         <button
           type="submit"
-          className="bg-red-600 text-white px-4 py-1 rounded mr-5"
+          className="bg-blue-600 text-white px-4 py-1 rounded mr-5"
           disabled={loading}
         >
           {loading ? "Uploading..." : "Upload"}

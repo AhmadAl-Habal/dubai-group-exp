@@ -43,7 +43,7 @@ const Sidebar = ({ isOpen, toggleSidebar, token }) => {
               className="block text-lg font-medium hover:text-gray-300"
               onClick={toggleSidebar}
             >
-              عن Global E-Commerce
+              عن Dubai Group
             </Link>
             <Link
               to="/faq"
