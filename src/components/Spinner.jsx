@@ -4,7 +4,7 @@ const Spinner = ({ loading }) => {
   const override = { display: "block", margin: "100px auto" };
   return (
     <ClipLoader
-      color="rgb(153 27 27 / var(--tw-bg-opacity, 1))"
+      color="blue"
       loading={loading}
       cssOverride={override}
       size={150}
