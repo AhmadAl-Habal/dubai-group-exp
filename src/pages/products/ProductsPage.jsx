@@ -12,6 +12,9 @@ import Spinner from "../../components/Spinner";
 import BackButton from "../../components/BackButton";
 
 const ProductsPage = () => {
+  useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   const { id } = useParams();
   const token = localStorage.getItem("token") || "";
   const [filteredSubCategory, setFilteredSubCategory] = useState("");

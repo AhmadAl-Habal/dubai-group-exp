@@ -6,6 +6,10 @@ import Spinner from "../../components/Spinner";
 import BackButton from "../../components/BackButton";
 import { AiOutlineClose } from "react-icons/ai";
 const ProductPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { id } = useParams();
   const [productDetails, setProductDetails] = useState(null);
   const [loading, setLoading] = useState(false);
