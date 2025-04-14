@@ -534,15 +534,23 @@ export const getSettingsRequest = async () => {
 
 export const updateSettings = async (field, value, token) => {
   try {
+    const key = field === "dollar" ? "dollar_price" : field;
+
     const response = await axiosInstance.put(
       `/settings/${field}`,
-      { [field]: value },
+      { [key]: value },
       {
-        headers: { "Content-Type": "application/json", auth: token },
+        headers: {
+          "Content-Type": "application/json",
+          auth: token,
+        },
       }
     );
 
     if (response.status === 200) {
+      sessionStorage.setItem("dollar_value", response.data.data.dollar_price);
+      sessionStorage.setItem("settings", JSON.stringify(response.data.data));
+
       return response.data;
     } else {
       throw new Error("Failed to update settings");
@@ -622,6 +630,8 @@ export const uploadHeroImages = async (endpoint, images, token) => {
         },
       }
     );
+    sessionStorage.setItem("dollar_value", response.data.data.dollar_price);
+    sessionStorage.setItem("settings", JSON.stringify(response.data.data));
 
     return response;
   } catch (error) {
