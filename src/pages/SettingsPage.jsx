@@ -10,6 +10,7 @@ import Whatsapp from "../components/social links/Whatsapp";
 import HeroImageField from "../components/HeroImageField";
 import HeroBulkImageUploadForm from "../components/HeroBulkImageUploadForm";
 import BackButton from "../components/BackButton";
+import Unauthorized from "../components/Unauthorized";
 const SettingsPage = () => {
   const token = localStorage.getItem("token");
   const [dollarValue, setDollarValue] = useState("");
