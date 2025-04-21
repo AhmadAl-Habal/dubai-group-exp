@@ -65,7 +65,7 @@ const ImageUploadForm = ({ inputDetails, endpoint, refresh, setRefresh }) => {
         />
         <button
           type="button"
-          className="absolute right-1 ml-2 bg-red-400 text-black p-1 rounded-full text-xs"
+          className="absolute right-1 ml-2 bg-blue-400 text-black p-1 rounded-full text-xs"
           onClick={clearImages}
         >
           Clear

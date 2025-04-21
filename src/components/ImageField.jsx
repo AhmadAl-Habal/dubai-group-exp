@@ -140,7 +140,7 @@ const ImageField = ({ inputDetails, endpoint, name }) => {
                 <button
                   type="button"
                   onClick={() => clearImage(index)}
-                  className="ml-2 bg-red-400 text-black p-1 rounded-full text-xs"
+                  className="ml-2 bg-blue-400 text-black p-1 rounded-full text-xs"
                 >
                   Clear
                 </button>
@@ -166,7 +166,7 @@ const ImageField = ({ inputDetails, endpoint, name }) => {
                     setSelectedIndex(index);
                     setPopupView(true);
                   }}
-                  className="flex bg-red-400 text-black p-1 rounded text-xs items-center"
+                  className="flex bg-blue-400 text-black p-1 rounded text-xs items-center"
                 >
                   Delete
                   <MdDelete className="ml-1" size={20} />

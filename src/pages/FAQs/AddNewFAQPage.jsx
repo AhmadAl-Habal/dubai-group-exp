@@ -107,7 +107,7 @@ const AddNewFAQPage = () => {
             />
             <button
               type="button"
-              className="absolute right-1 bg-red-400 text-black p-1 rounded-full text-xs"
+              className="absolute right-1 bg-blue-400 text-black p-1 rounded-full text-xs"
               onClick={clearImage}
             >
               Clear

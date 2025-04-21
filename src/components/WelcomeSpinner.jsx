@@ -47,18 +47,18 @@ const WelcomeSpinner = ({ motionBg, onDataFetched }) => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 3 }}
         whileHover={{ scale: 1.05 }}
-        className="relative h-screen flex items-center justify-center text-center px-4 mt-10"
+        className="relative h-screen flex justify-center text-center px-4 mt-[40vh]"
       >
         <div className="text-white">
           <h1
             className="text-5xl md:text-7xl font-extrabold italic"
             style={{ fontFamily: "Great Vibes, cursive" }}
           >
-            Dubai Group Laptops
+            LapLobby
           </h1>
 
           <p className="text-lg md:text-2xl mt-4 uppercase tracking-widest">
-          Your next laptop is just a click away
+            Your next laptop is just a click away
           </p>
         </div>
       </motion.div>

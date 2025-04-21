@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import motionBg2 from "../assets/motion2.jpg";
+import motionBg2 from "../assets/motion2.png";
 
 const Sidebar = ({ isOpen, toggleSidebar, token }) => {
   return (
@@ -43,7 +43,7 @@ const Sidebar = ({ isOpen, toggleSidebar, token }) => {
               className="block text-lg font-medium hover:text-gray-300"
               onClick={toggleSidebar}
             >
-              عن Dubai Group
+              عن LapLobby
             </Link>
             <Link
               to="/faq"
