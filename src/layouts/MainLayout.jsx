@@ -26,7 +26,7 @@ const MainLayout = () => {
     };
 
     getSettings();
-  }, []);
+  }, [location]);
 
   return (
     <>

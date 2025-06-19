@@ -58,6 +58,7 @@ const Navbar = () => {
             <Link
               to={"/login"}
               className="font-bold text-xs text-black border-2 border-black p-1 rounded-full"
+              data-testid="login-link"
             >
               Login
             </Link>
