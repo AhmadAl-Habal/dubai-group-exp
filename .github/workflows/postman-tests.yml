@@ -2,7 +2,7 @@ name: Run Postman Tests
 
 on:
   push:
-    branches: [main] # غيّرها إذا فرعك اسمه غير main
+    branches: [main]
   pull_request:
 
 jobs:
