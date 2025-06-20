@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "3ea57413-be9b-4f22-a91f-f2b9d92b100f",
-		"name": "My Collection",
+		"_postman_id": "f0746668-728e-467d-97c2-951fd4c69d1d",
+		"name": "My Collection Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "39229888"
 	},
@@ -643,7 +643,10 @@
 					"name": "New Request",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				}
@@ -2052,8 +2055,49 @@
 						{
 							"listen": "test",
 							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response time is under 2 seconds\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message should be 'Logged In successfully'\", function () {\r",
+									"    pm.expect(responseJson.message).to.exist.and.equal('Logged In successfully');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"'data' should exist and be an object\", function () {\r",
+									"    pm.expect(responseJson.data).to.exist.and.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"'token' should exist and be a non-empty string\", function () {\r",
+									"    pm.expect(responseJson.data.token).to.exist.and.be.a('string').and.to.have.length.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"'user' should be an object\", function () {\r",
+									"    pm.expect(responseJson.data.user).to.exist.and.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"'_id' should be a non-empty string\", function () {\r",
+									"    pm.expect(responseJson.data.user._id).to.exist.and.be.a('string').and.to.have.length.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"'user_name' should match request\", function () {\r",
+									"    pm.expect(responseJson.data.user.user_name).to.exist.and.be.a('string').and.to.equal(\"hhhhh\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"User role should be 0 or 1\", function () {\r",
+									"    const role = responseJson.data.user.role;\r",
+									"    pm.expect(role).to.be.a('number').and.to.be.oneOf([0, 1]);\r",
+									"});\r",
+									""
+								],
 								"type": "text/javascript",
-								"exec": []
+								"packages": {}
 							}
 						}
 					],
