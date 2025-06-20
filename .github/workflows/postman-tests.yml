@@ -23,4 +23,4 @@ jobs:
 
       - name: Run Postman Collection
         run: |
-          newman run postman_collection.json --folder "user/login"
+          newman run postman_collection.json
