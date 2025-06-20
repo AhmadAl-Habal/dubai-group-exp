@@ -2278,7 +2278,9 @@
 	],
 	"variable": [
 		{
-			"value": ""
+			"key": "url",
+			"value": "https://dubai-group-gallery.vercel.app",
+			"type": "default"
 		}
 	]
 }
