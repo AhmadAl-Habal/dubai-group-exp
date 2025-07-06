@@ -1,6 +1,8 @@
 name: Playwright Tests
 on: [push, pull_request]  # Runs on both pushes and PRs
-
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   test:
     timeout-minutes: 60
