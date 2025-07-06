@@ -41,6 +41,7 @@ const ProductsListing = () => {
         <>
           <div className="mb-4">
             <input
+            data-testid="Search"
               dir="rtl"
               type="text"
               placeholder="ابحث عن منتج..."
