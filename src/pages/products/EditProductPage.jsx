@@ -216,7 +216,7 @@ const EditProductPage = () => {
               <p className="text-gray-600">Loading...</p>
             ) : (
               <>
-                <div className="flex mb-4">
+                <div className="flex items-center mb-4">
                   <label className="text-white font-bold w-1/4 text-sm">
                     Category
                   </label>

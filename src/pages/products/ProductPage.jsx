@@ -59,9 +59,11 @@ const ProductPage = () => {
               <div className="w-full">
                 <div className="w-full flex justify-center items-center mb-5">
                   <img
+                    onClick={() => setPopupView("2")}
                     src={mainImage}
                     alt="Main Product"
                     className="rounded w-[350px] h-[350px] object-contain"
+                    draggable="false" 
                   />
                 </div>
 
@@ -169,7 +171,7 @@ const ProductPage = () => {
                   </div>
                 )}
                 <a
-                  onClick={() => setPopupView(true)}
+                  onClick={() => setPopupView("1")}
                   className="block text-center bg-blue-500 hover:bg-blue-600 transition duration-200 text-white font-bold py-2 rounded-lg cursor-pointer"
                 >
                   أطلب الآن
@@ -182,7 +184,7 @@ const ProductPage = () => {
         </div>
       </div>
 
-      {popupView && (
+      {popupView == "1" && (
         <div
           className="min-h-screen w-full bg-black z-10 fixed top-0 left-0 bg-opacity-70"
           onClick={() => setPopupView(false)}
@@ -227,6 +229,39 @@ const ProductPage = () => {
               ) : (
                 <p>لا يوجد معلومات لعرضها</p>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+      {popupView == "2" && (
+        <div
+          className="min-h-screen w-full bg-black z-10 fixed top-0 left-0 bg-opacity-70"
+          onClick={() => setPopupView(false)}
+        >
+          <button
+            className="right-4 top-10 cursor-pointer p-3 text-white fixed rounded-full w-[40px] text-2xl"
+            onClick={(e) => {
+              setPopupView(false);
+            }}
+          >
+            <AiOutlineClose />
+          </button>
+
+          <div className="flex items-center justify-center min-h-screen overflow-y-auto">
+            {/* <div
+              dir="rtl"
+              className="flex flex-col text-white bg-black p-6 rounded-lg w-[80vw] max-w-[600px] mx-auto my-10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              test
+            </div> */}
+            <div className="w-full flex justify-center items-center mb-5">
+              <img
+                onClick={() => setPopupView("2")}
+                src={mainImage}
+                alt="Main Product"
+                className="rounded w-4/6 h-4/6 object-contain"
+              />
             </div>
           </div>
         </div>
