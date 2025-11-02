@@ -92,14 +92,11 @@ const Product = ({ product }) => {
                 <p>
                   {product.discount ? (
                     <>
-                      <span className="text-gray-400 line-through mr-2">
+                      <span className="text-gray-300 line-through mr-2">
                         ${product.price}
                       </span>
                       <span>
-                        $
-                        {(product.price * (1 - product.discount / 100)).toFixed(
-                          2
-                        )}
+                        ${(product.price - product.discount).toFixed(2)}
                       </span>
                     </>
                   ) : (
@@ -109,9 +106,11 @@ const Product = ({ product }) => {
                 <p>
                   {product.discount
                     ? (
-                        product.price *
-                        storedDollarValue *
-                        (1 - product.discount / 100)
+                      (product.price -  product.discount )
+
+
+
+                        * storedDollarValue
                       ).toLocaleString("en-US", {
                         minimumFractionDigits: 0,
                         maximumFractionDigits: 2,
