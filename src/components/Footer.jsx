@@ -8,26 +8,22 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
-const Footer = () => {
-  const [settings, setSettings] = useState(null);
-
-  useEffect(() => {
-    const storedSettings = sessionStorage.getItem("settings");
-    if (storedSettings) {
-      setSettings(JSON.parse(storedSettings));
-    }
-  }, []);
-
-  if (!settings?.social_media) {
-    return null;
+const getInitialSettings = () => {
+  const storedSettings = sessionStorage.getItem("settings");
+  if (storedSettings) {
+    return JSON.parse(storedSettings);
   }
 
-  const { social_media } = settings;
+  return {};
+};
+const Footer = () => {
+  const [settings, setSettings] = useState(getInitialSettings);
+
+  const { social_media = {} } = settings;
 
   return (
     <div className="fixed bottom-0 left-0 w-full z-20">
       {" "}
-      {/* Lower z-index */}
       <footer className="bg-blue-500 p-1 flex justify-between items-center">
         <div className="w-full flex justify-between items-center gap-x-2">
           <div className="flex items-center gap-x-4">

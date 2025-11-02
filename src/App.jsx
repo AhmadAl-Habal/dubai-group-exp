@@ -22,8 +22,8 @@ import AddNewCategoryPage from "./pages/categories/AddNewCategoryPage.jsx";
 import EditCategoryPage from "./pages/categories/EditCategoryPage.jsx";
 import WelcomeSpinner from "./components/WelcomeSpinner.jsx";
 import motionBg2 from "./assets/motion2.png";
+import { getSettingsRequest } from "./api/axios.js";
 
-// Animated Routes Component
 const AnimatedRoutes = () => {
   const location = useLocation();
 
@@ -54,11 +54,23 @@ const AnimatedRoutes = () => {
   );
 };
 
-// Main App Component
 function App() {
   const [showSpinner, setShowSpinner] = useState(true);
+  const getSettings = async () => {
+    try {
+      const settingsData = await getSettingsRequest();
+
+      if (settingsData) {
+        sessionStorage.setItem("dollar_value", settingsData.dollar_price);
+        sessionStorage.setItem("settings", JSON.stringify(settingsData));
+      }
+    } catch (error) {
+      console.error("Error fetching settings:", error.message);
+    }
+  };
 
   useEffect(() => {
+    getSettings();
     const timer = setTimeout(() => setShowSpinner(false), 3000);
 
     return () => clearTimeout(timer);

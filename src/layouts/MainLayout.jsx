@@ -30,23 +30,18 @@ const MainLayout = () => {
 
   return (
     <>
-      {/* {location.pathname === "/" && <WarnningMessage />} */}
-
       <div className="relative min-h-[100vh]">
-        {/* Background Image */}
         <div
           className="absolute inset-0 bg-fixed bg-cover bg-center z-0"
           style={{ backgroundImage: `url(${hero})`, opacity: 0.7 }}
         ></div>
 
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-80 z-10"></div>
 
         <Navbar />
 
-        {/* Main Content Area */}
         <div className="flex-grow relative z-20">
-          <Outlet /> {/* This is where pages will be rendered */}
+          <Outlet />
         </div>
 
         <Footer />
