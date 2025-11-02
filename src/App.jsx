@@ -53,29 +53,43 @@ const AnimatedRoutes = () => {
     </div>
   );
 };
-
-function App() {
-  const [showSpinner, setShowSpinner] = useState(true);
-  const getSettings = async () => {
+const getSettings = async () => {
     try {
-      const settingsData = await getSettingsRequest();
+        const settingsData = await getSettingsRequest(); // ⬅️ تحتاج إلى أن getSettingsRequest() تُرجع Promise
 
-      if (settingsData) {
-        sessionStorage.setItem("dollar_value", settingsData.dollar_price);
-        sessionStorage.setItem("settings", JSON.stringify(settingsData));
-      }
+        if (settingsData) {
+            sessionStorage.setItem("dollar_value", settingsData.dollar_price);
+            sessionStorage.setItem("settings", JSON.stringify(settingsData));
+        }
     } catch (error) {
-      console.error("Error fetching settings:", error.message);
+        console.error("Error fetching settings:", error.message);
     }
-  };
 
-  useEffect(() => {
-    getSettings();
-    const timer = setTimeout(() => setShowSpinner(false), 3000);
+};
+function App() {
+    const [showSpinner, setShowSpinner] = useState(true);
+  
 
-    return () => clearTimeout(timer);
-  }, []);
+    useEffect(() => {
+       
+        const loadInitialData = async () => {
+          
+            const timerPromise = new Promise(resolve => setTimeout(resolve, 3000));
+            
+         
+            await Promise.all([
+                getSettings(),
+                timerPromise   
+            ]);
 
+         
+            setShowSpinner(false);
+        };
+
+        loadInitialData();
+        
+       
+    }, []);
   return (
     <Router>
       {showSpinner ? (

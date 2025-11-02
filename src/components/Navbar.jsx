@@ -60,7 +60,7 @@ const Navbar = () => {
               className="font-bold text-xs text-black border-2 border-black p-1 rounded-full"
               data-testid="login-link"
             >
-              Login
+              Login as Admin
             </Link>
           )}
         </div>

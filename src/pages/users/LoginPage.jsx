@@ -14,8 +14,8 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      username: "Global_E-Commerce",
-      password: "Global_E-Commerce12345",
+      username: "ahmad",
+      password: "1234",
     },
   });
   const [loading, setLoading] = useState(false);
