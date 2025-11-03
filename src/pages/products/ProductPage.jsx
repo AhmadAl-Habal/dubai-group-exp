@@ -1,15 +1,13 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getProductDetails } from "../../api/axios";
 import Spinner from "../../components/Spinner";
-
+import { useRef } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import BackButton from "../../components/BackButton";
 import { AiOutlineClose } from "react-icons/ai";
 const ProductPage = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const { id } = useParams();
   const [productDetails, setProductDetails] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -17,8 +15,11 @@ const ProductPage = () => {
   const [mainImage, setMainImage] = useState("");
   const storedDollarValue = sessionStorage.getItem("dollar_value") || 1;
   const [popupView, setPopupView] = useState(false);
+  const [showArrows, setShowArrows] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const [whatsappAccounts, setWhatsappAccounts] = useState([]);
+  
   useEffect(() => {
     const storedSettings = sessionStorage.getItem("settings");
 
@@ -27,6 +28,55 @@ const ProductPage = () => {
       setWhatsappAccounts(settingsObject.social_media.whatsapp);
     }
   }, []);
+  const containerRef = useRef(null);
+
+  const scrollRef = useRef(null);
+
+  const scroll = (direction) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const scrollAmount = 100; 
+    container.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+
+useEffect(() => {
+  if (scrollRef.current) {
+    const selectedThumbnail = scrollRef.current.querySelectorAll('img')[currentImageIndex];
+    if (selectedThumbnail) {
+      selectedThumbnail.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center', // يجعل العنصر يظهر في وسط العنصر الأب
+        block: 'nearest',
+      });
+    }
+  }
+}, [currentImageIndex]);
+
+  useEffect(() => {
+    if (productDetails?.images?.length) {
+      setCurrentImageIndex(0);
+    }
+  }, [productDetails]);
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      const container = scrollRef.current;
+      const wrapper = containerRef.current;
+      if (container && wrapper) {
+        const contentWidth = container.scrollWidth;
+        const visibleWidth = wrapper.offsetWidth;
+        setShowArrows(contentWidth > visibleWidth);
+      }
+    };
+
+    checkOverflow();
+    window.addEventListener("resize", checkOverflow);
+    return () => window.removeEventListener("resize", checkOverflow);
+  }, [productDetails?.images]);
 
   useEffect(() => {
     setLoading(true);
@@ -37,6 +87,7 @@ const ProductPage = () => {
         setProductDetails(response);
         if (response.images?.length) {
           setMainImage(response.images[0]);
+          setCurrentImageIndex(0);
         }
       } catch (err) {
         console.log(err.message);
@@ -46,6 +97,22 @@ const ProductPage = () => {
     };
     fetchData();
   }, []);
+  const goToNextImage = () => {
+    if (!productDetails?.images?.length) return;
+
+    const nextIndex = (currentImageIndex + 1) % productDetails.images.length;
+    setCurrentImageIndex(nextIndex);
+  };
+
+  const goToPrevImage = () => {
+    if (!productDetails?.images?.length) return;
+
+    const prevIndex =
+      (currentImageIndex - 1 + productDetails.images.length) %
+      productDetails.images.length;
+    setCurrentImageIndex(prevIndex);
+  };
+
   return (
     <>
       <div className="relative min-h-[100vh]">
@@ -56,34 +123,86 @@ const ProductPage = () => {
             <Spinner />
           ) : productDetails ? (
             <>
-              <div className="w-full">
-                <div className="w-full flex justify-center items-center mb-5">
-                  <img
-                    onClick={() => setPopupView("2")}
-                    src={mainImage}
-                    alt="Main Product"
-                    className="rounded w-[350px] h-[350px] object-contain"
-                    draggable="false" 
-                  />
-                </div>
+            <div className="w-full">
+  <div className="w-full flex justify-center items-center mb-5">
+    {/* زر اليسار */}
+    {productDetails.images?.length > 1 && (
+      <button
+        onClick={goToNextImage}
+        className="text-white hover:text-gray-300"
+        style={{ padding: "4px", marginRight: "10px" }}
+      >
+        <FaChevronLeft size={24} />
+      </button>
+    )}
 
-                {productDetails.images?.length > 1 && (
-                  <div
-                    dir="rtl"
-                    className="flex w-full justify-center items-center mb-5 flex-wrap"
-                  >
-                    {productDetails.images.map((image, index) => (
-                      <img
-                        key={index}
-                        src={image}
-                        alt={`Product Image ${index + 1}`}
-                        className="rounded-full w-10 h-10 mx-1 cursor-pointer object-cover"
-                        onClick={() => setMainImage(image)}
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
+    <img
+      src={productDetails.images[currentImageIndex]}
+      alt={`Main Product ${currentImageIndex + 1}`}
+      className="rounded w-[350px] h-[350px] object-contain"
+ onClick={() => setPopupView("2")}
+    />
+
+
+    {productDetails.images?.length > 1 && (
+      <button
+        onClick={goToPrevImage}
+        className="text-white hover:text-gray-300"
+        style={{ padding: "4px", marginLeft: "10px" }}
+      >
+        <FaChevronRight size={24} />
+      </button>
+    )}
+  </div>
+
+
+  {productDetails.images?.length > 1 && (
+    <div
+      ref={containerRef}
+      className="w-full mb-5 relative flex items-center justify-center gap-2"
+    >
+      {showArrows && (
+        <button
+          onClick={() => scroll("left")}
+          className="z-10 text-white hover:text-gray-300"
+          style={{ padding: "4px" }}
+        >
+          <FaChevronLeft size={20} />
+        </button>
+      )}
+
+      <div
+        ref={scrollRef}
+        dir="rtl"
+      className="flex overflow-x-auto justify-center no-scrollbar gap-2 flex-nowrap w-full max-w-[80%] px-4"
+
+      >
+        {productDetails.images.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={`Product Image ${index + 1}`}
+            onClick={() => setCurrentImageIndex(index)}
+            className={`rounded-full w-10 h-10 cursor-pointer object-cover flex-shrink-0
+              ${index === currentImageIndex ? "border-2 border-white ring-1 ring-white" : ""}
+            `}
+          />
+        ))}
+      </div>
+
+      {showArrows && (
+        <button
+          onClick={() => scroll("right")}
+          className="z-10 text-white hover:text-gray-300"
+          style={{ padding: "4px" }}
+        >
+          <FaChevronRight size={20} />
+        </button>
+      )}
+    </div>
+  )}
+</div>
+
 
               <div
                 dir="rtl"
@@ -99,66 +218,63 @@ const ProductPage = () => {
                     {productDetails.description}
                   </p>
                 )}
-                {productDetails.price && (
-                  <div className="mb-6">
-                    <p className="font-bold text-lg mb-2">السعر:</p>
-                    {productDetails.discount ? (
-                      <div className="flex flex-col items-start gap-2">
-                        <span className="flex items-center text-gray-400 text-sm line-through">
-                          السعر الأصلي: ${productDetails.price}
-                        </span>
+                {typeof productDetails.price === "number" &&
+                  productDetails.price > 0 && (
+                    <div className="mb-6">
+                      <p className="font-bold text-lg mb-2">السعر:</p>
+                      {productDetails.discount ? (
+                        <div className="flex flex-col items-start gap-2">
+                          <span className="flex items-center text-gray-400 text-sm line-through">
+                            السعر الأصلي: ${productDetails.price}
+                          </span>
 
-                        <span className="flex items-center text-green-400 text-xl font-bold">
-                          السعر بعد الخصم: $
-                         {(
-
-
-                       
-
+                          <span className="flex items-center text-green-400 text-xl font-bold">
+                            سعر العرض: $
+                            {(
                               productDetails.price 
-
-
                               - productDetails.discount 
-
                             ).toFixed(2)}
-                        </span>
+                          </span>
 
-                        <span className="text-sm text-gray-300">
-                          ما يعادل:
-                          {((  productDetails.price - productDetails.discount)*storedDollarValue 
+                          <span className="text-sm text-gray-300">
+                            ما يعادل:
+                            {(
+                            (  productDetails.price - productDetails.discount)
+                            *  storedDollarValue 
+                              
                             ).toLocaleString("en-US", {
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 2,
-                          })}
-                          ل.س
-                        </span>
-                      </div>
-                    ) : (
-                      <div className="flex flex-col items-start gap-2">
-                        <span className="text-gray-300 text-xl font-bold">
-                          ${productDetails.price}
-                        </span>
-                        <span className="text-sm text-gray-300">
-                          ما يعادل:
-                          {(
-                            productDetails.price * storedDollarValue
-                          ).toLocaleString("en-US")}
-                          ل.س
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                )}
+                              minimumFractionDigits: 0,
+                              maximumFractionDigits: 2,
+                            })}
+                            ل.س
+                          </span>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-start gap-2">
+                          <span className="text-gray-300 text-xl font-bold">
+                            ${productDetails.price}
+                          </span>
+                          <span className="text-sm text-gray-300">
+                            ما يعادل:
+                            {(
+                              productDetails.price * storedDollarValue
+                            ).toLocaleString("en-US")}
+                            ل.س
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                 <div className="mb-4">
                   <p className="font-bold text-lg mb-2">الصنف:</p>
                   {productDetails.main_category_id && (
-                    <span className="inline-block bg-blue-600 text-gray-200 text-sm px-3 py-1 rounded-full">
+                    <span className="inline-block bg-red-600 text-gray-200 text-sm px-3 py-1 rounded-full">
                       {productDetails.main_category_id.name}
                     </span>
                   )}
                   {productDetails.sub_category_id && (
-                    <span className="inline-block bg-blue-600 text-gray-200 text-sm px-3 py-1 rounded-full">
+                    <span className="inline-block bg-red-600 text-gray-200 text-sm px-3 py-1 rounded-full">
                       {productDetails.sub_category_id.name}
                     </span>
                   )}
@@ -175,8 +291,8 @@ const ProductPage = () => {
                   </div>
                 )}
                 <a
-                  onClick={() => setPopupView("1")}
-                  className="block text-center bg-blue-500 hover:bg-blue-600 transition duration-200 text-white font-bold py-2 rounded-lg cursor-pointer"
+              onClick={() => setPopupView("2")}
+                  className="block text-center bg-red-500 hover:bg-red-600 transition duration-200 text-white font-bold py-2 rounded-lg cursor-pointer"
                 >
                   أطلب الآن
                 </a>
@@ -188,7 +304,7 @@ const ProductPage = () => {
         </div>
       </div>
 
-      {popupView == "1" && (
+     {popupView == "1" && (
         <div
           className="min-h-screen w-full bg-black z-10 fixed top-0 left-0 bg-opacity-70"
           onClick={() => setPopupView(false)}
@@ -261,7 +377,7 @@ const ProductPage = () => {
             </div> */}
             <div className="w-full flex justify-center items-center mb-5">
               <img
-                onClick={() => setPopupView("2")}
+                
                 src={mainImage}
                 alt="Main Product"
                 className="rounded w-4/6 h-4/6 object-contain"
