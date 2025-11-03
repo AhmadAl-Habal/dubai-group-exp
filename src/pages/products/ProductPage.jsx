@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getProductDetails } from "../../api/axios";
@@ -7,6 +6,7 @@ import { useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import BackButton from "../../components/BackButton";
 import { AiOutlineClose } from "react-icons/ai";
+
 const ProductPage = () => {
   const { id } = useParams();
   const [productDetails, setProductDetails] = useState(null);
@@ -19,15 +19,34 @@ const ProductPage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const [whatsappAccounts, setWhatsappAccounts] = useState([]);
-  
+
+const productName = productDetails?.name || 'المنتج المطلوب'; 
+
+// 🟢 1. بناء الرسالة الخام (باستخدام \n)
+const rawMessage = 
+    `مرحباً! لقد رأيت هذا المنتج على موقعكم الإلكتروني` + 
+    `\n` + 
+    `\n` + 
+    `*${productName}*` +
+    `\n` + 
+    `\n` + 
+    `الرجاء تزويدي بالمزيد من التفاصيل عنه.` +
+    `\n` +
+    `شكراً لكم.`;
+
+// 🟢 2. تشفير الرسالة النيئة مرة واحدة
+const encodedMessage = encodeURIComponent(rawMessage);
+
   useEffect(() => {
     const storedSettings = sessionStorage.getItem("settings");
 
     if (storedSettings) {
       const settingsObject = JSON.parse(storedSettings);
       setWhatsappAccounts(settingsObject.social_media.whatsapp);
+      console.log(settingsObject.social_media.whatsapp);
     }
   }, []);
+
   const containerRef = useRef(null);
 
   const scrollRef = useRef(null);
@@ -35,26 +54,26 @@ const ProductPage = () => {
   const scroll = (direction) => {
     const container = scrollRef.current;
     if (!container) return;
-    const scrollAmount = 100; 
+    const scrollAmount = 100;
     container.scrollBy({
       left: direction === "left" ? -scrollAmount : scrollAmount,
       behavior: "smooth",
     });
   };
 
-
-useEffect(() => {
-  if (scrollRef.current) {
-    const selectedThumbnail = scrollRef.current.querySelectorAll('img')[currentImageIndex];
-    if (selectedThumbnail) {
-      selectedThumbnail.scrollIntoView({
-        behavior: 'smooth',
-        inline: 'center', // يجعل العنصر يظهر في وسط العنصر الأب
-        block: 'nearest',
-      });
+  useEffect(() => {
+    if (scrollRef.current) {
+      const selectedThumbnail =
+        scrollRef.current.querySelectorAll("img")[currentImageIndex];
+      if (selectedThumbnail) {
+        selectedThumbnail.scrollIntoView({
+          behavior: "smooth",
+          inline: "center",
+          block: "nearest",
+        });
+      }
     }
-  }
-}, [currentImageIndex]);
+  }, [currentImageIndex]);
 
   useEffect(() => {
     if (productDetails?.images?.length) {
@@ -123,86 +142,82 @@ useEffect(() => {
             <Spinner />
           ) : productDetails ? (
             <>
-            <div className="w-full">
-  <div className="w-full flex justify-center items-center mb-5">
-    {/* زر اليسار */}
-    {productDetails.images?.length > 1 && (
-      <button
-        onClick={goToNextImage}
-        className="text-white hover:text-gray-300"
-        style={{ padding: "4px", marginRight: "10px" }}
-      >
-        <FaChevronLeft size={24} />
-      </button>
-    )}
+              <div className="w-full">
+                <div className="w-full flex justify-center items-center mb-5">
+                  {/* زر اليسار */}
+                  {productDetails.images?.length > 1 && (
+                    <button
+                      onClick={goToNextImage}
+                      className="text-white hover:text-gray-300"
+                      style={{ padding: "4px", marginRight: "10px" }}
+                    >
+                      <FaChevronLeft size={24} />
+                    </button>
+                  )}
 
-    <img
-      src={productDetails.images[currentImageIndex]}
-      alt={`Main Product ${currentImageIndex + 1}`}
-      className="rounded w-[350px] h-[350px] object-contain"
- onClick={() => setPopupView("2")}
-    />
+                  <img
+                    src={productDetails.images[currentImageIndex]}
+                    alt={`Main Product ${currentImageIndex + 1}`}
+                    className="rounded w-[350px] h-[350px] object-contain"
+                    onClick={() => setPopupView("2")}
+                  />
 
+                  {productDetails.images?.length > 1 && (
+                    <button
+                      onClick={goToPrevImage}
+                      className="text-white hover:text-gray-300"
+                      style={{ padding: "4px", marginLeft: "10px" }}
+                    >
+                      <FaChevronRight size={24} />
+                    </button>
+                  )}
+                </div>
 
-    {productDetails.images?.length > 1 && (
-      <button
-        onClick={goToPrevImage}
-        className="text-white hover:text-gray-300"
-        style={{ padding: "4px", marginLeft: "10px" }}
-      >
-        <FaChevronRight size={24} />
-      </button>
-    )}
-  </div>
+                {productDetails.images?.length > 1 && (
+                  <div
+                    ref={containerRef}
+                    className="w-full mb-5 relative flex items-center justify-center gap-2"
+                  >
+                    {showArrows && (
+                      <button
+                        onClick={() => scroll("left")}
+                        className="z-10 text-white hover:text-gray-300"
+                        style={{ padding: "4px" }}
+                      >
+                        <FaChevronLeft size={20} />
+                      </button>
+                    )}
 
-
-  {productDetails.images?.length > 1 && (
-    <div
-      ref={containerRef}
-      className="w-full mb-5 relative flex items-center justify-center gap-2"
-    >
-      {showArrows && (
-        <button
-          onClick={() => scroll("left")}
-          className="z-10 text-white hover:text-gray-300"
-          style={{ padding: "4px" }}
-        >
-          <FaChevronLeft size={20} />
-        </button>
-      )}
-
-      <div
-        ref={scrollRef}
-        dir="rtl"
-      className="flex overflow-x-auto justify-center no-scrollbar gap-2 flex-nowrap w-full max-w-[80%] px-4"
-
-      >
-        {productDetails.images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Product Image ${index + 1}`}
-            onClick={() => setCurrentImageIndex(index)}
-            className={`rounded-full w-10 h-10 cursor-pointer object-cover flex-shrink-0
+                    <div
+                      ref={scrollRef}
+                      dir="rtl"
+                      className="flex overflow-x-auto justify-center no-scrollbar gap-2 flex-nowrap w-full max-w-[80%] px-4"
+                    >
+                      {productDetails.images.map((image, index) => (
+                        <img
+                          key={index}
+                          src={image}
+                          alt={`Product Image ${index + 1}`}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`rounded-full w-10 h-10 cursor-pointer object-cover flex-shrink-0
               ${index === currentImageIndex ? "border-2 border-white ring-1 ring-white" : ""}
             `}
-          />
-        ))}
-      </div>
+                        />
+                      ))}
+                    </div>
 
-      {showArrows && (
-        <button
-          onClick={() => scroll("right")}
-          className="z-10 text-white hover:text-gray-300"
-          style={{ padding: "4px" }}
-        >
-          <FaChevronRight size={20} />
-        </button>
-      )}
-    </div>
-  )}
-</div>
-
+                    {showArrows && (
+                      <button
+                        onClick={() => scroll("right")}
+                        className="z-10 text-white hover:text-gray-300"
+                        style={{ padding: "4px" }}
+                      >
+                        <FaChevronRight size={20} />
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
 
               <div
                 dir="rtl"
@@ -231,17 +246,15 @@ useEffect(() => {
                           <span className="flex items-center text-green-400 text-xl font-bold">
                             سعر العرض: $
                             {(
-                              productDetails.price 
-                              - productDetails.discount 
+                              productDetails.price - productDetails.discount
                             ).toFixed(2)}
                           </span>
 
                           <span className="text-sm text-gray-300">
                             ما يعادل:
                             {(
-                            (  productDetails.price - productDetails.discount)
-                            *  storedDollarValue 
-                              
+                              (productDetails.price - productDetails.discount) *
+                              storedDollarValue
                             ).toLocaleString("en-US", {
                               minimumFractionDigits: 0,
                               maximumFractionDigits: 2,
@@ -291,7 +304,7 @@ useEffect(() => {
                   </div>
                 )}
                 <a
-              onClick={() => setPopupView("2")}
+                  onClick={() => setPopupView("1")}
                   className="block text-center bg-red-500 hover:bg-red-600 transition duration-200 text-white font-bold py-2 rounded-lg cursor-pointer"
                 >
                   أطلب الآن
@@ -304,7 +317,7 @@ useEffect(() => {
         </div>
       </div>
 
-     {popupView == "1" && (
+      {popupView == "1" && (
         <div
           className="min-h-screen w-full bg-black z-10 fixed top-0 left-0 bg-opacity-70"
           onClick={() => setPopupView(false)}
@@ -325,6 +338,7 @@ useEffect(() => {
               onClick={(e) => e.stopPropagation()}
             >
               {whatsappAccounts.length !== 0 ? (
+                
                 <>
                   <p className="font-bold mb-5">أختر الادمن المناسب:</p>
                   <ul className="space-y-2 text-gray-400">
@@ -338,7 +352,10 @@ useEffect(() => {
                           <p className="text-sm">{account.phone_number}+</p>
                         </div>
                         <button className="bg-blue-600 text-white py-1 px-2 rounded">
-                          <a href={account.link} target="_blank">
+                          <a
+                            href={`https://wa.me/963${account.phone_number}?text=${encodedMessage}`}
+                            target="_blank"
+                          >
                             تواصل من هنا
                           </a>
                         </button>
@@ -368,16 +385,8 @@ useEffect(() => {
           </button>
 
           <div className="flex items-center justify-center min-h-screen overflow-y-auto">
-            {/* <div
-              dir="rtl"
-              className="flex flex-col text-white bg-black p-6 rounded-lg w-[80vw] max-w-[600px] mx-auto my-10"
-              onClick={(e) => e.stopPropagation()}
-            >
-              test
-            </div> */}
             <div className="w-full flex justify-center items-center mb-5">
               <img
-                
                 src={mainImage}
                 alt="Main Product"
                 className="rounded w-4/6 h-4/6 object-contain"
