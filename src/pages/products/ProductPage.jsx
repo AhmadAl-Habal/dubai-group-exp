@@ -20,22 +20,20 @@ const ProductPage = () => {
 
   const [whatsappAccounts, setWhatsappAccounts] = useState([]);
 
-const productName = productDetails?.name || 'المنتج المطلوب'; 
+  const productName = productDetails?.name || "المنتج المطلوب";
 
-// 🟢 1. بناء الرسالة الخام (باستخدام \n)
-const rawMessage = 
-    `مرحباً! لقد رأيت هذا المنتج على موقعكم الإلكتروني` + 
-    `\n` + 
-    `\n` + 
+  const rawMessage =
+    `مرحباً! لقد رأيت هذا المنتج على موقعكم الإلكتروني` +
+    `\n` +
+    `\n` +
     `*${productName}*` +
-    `\n` + 
-    `\n` + 
+    `\n` +
+    `\n` +
     `الرجاء تزويدي بالمزيد من التفاصيل عنه.` +
     `\n` +
     `شكراً لكم.`;
 
-// 🟢 2. تشفير الرسالة النيئة مرة واحدة
-const encodedMessage = encodeURIComponent(rawMessage);
+  const encodedMessage = encodeURIComponent(rawMessage);
 
   useEffect(() => {
     const storedSettings = sessionStorage.getItem("settings");
@@ -338,7 +336,6 @@ const encodedMessage = encodeURIComponent(rawMessage);
               onClick={(e) => e.stopPropagation()}
             >
               {whatsappAccounts.length !== 0 ? (
-                
                 <>
                   <p className="font-bold mb-5">أختر الادمن المناسب:</p>
                   <ul className="space-y-2 text-gray-400">
@@ -389,7 +386,7 @@ const encodedMessage = encodeURIComponent(rawMessage);
               <img
                 src={mainImage}
                 alt="Main Product"
-                className="rounded w-4/6 h-4/6 object-contain"
+                className="rounded w-4/6 h-4/6 md:h-1/6 object-contain"
               />
             </div>
           </div>

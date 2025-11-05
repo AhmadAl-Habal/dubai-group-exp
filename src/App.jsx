@@ -21,7 +21,7 @@ import ProductsPage from "./pages/products/ProductsPage.jsx";
 import AddNewCategoryPage from "./pages/categories/AddNewCategoryPage.jsx";
 import EditCategoryPage from "./pages/categories/EditCategoryPage.jsx";
 import WelcomeSpinner from "./components/WelcomeSpinner.jsx";
-import motionBg2 from "./assets/motion2.png";
+import motionBg2 from "./assets/motion2.jpg";
 import { getSettingsRequest } from "./api/axios.js";
 
 const AnimatedRoutes = () => {
@@ -55,7 +55,7 @@ const AnimatedRoutes = () => {
 };
 const getSettings = async () => {
     try {
-        const settingsData = await getSettingsRequest(); // ⬅️ تحتاج إلى أن getSettingsRequest() تُرجع Promise
+        const settingsData = await getSettingsRequest();
 
         if (settingsData) {
             sessionStorage.setItem("dollar_value", settingsData.dollar_price);

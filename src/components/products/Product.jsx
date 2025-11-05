@@ -69,7 +69,7 @@ const Product = ({ product }) => {
       >
         <Link to={`/product/${product._id}`}>
           <img
-            className="mb-3 rounded-full max-w-[140px] max-h-[140px]"
+            className="mb-3 rounded-full w-[140px] max-h-[140px]"
             src={product.images?.[0] || "/assets/default-image.jpg"}
             alt={product.name || "Default Product"}
           />
@@ -79,7 +79,7 @@ const Product = ({ product }) => {
             <div className="mb-1">
               {product.name}
               {product.main_category_id && (
-                <p className="inline-block border rounded-full text-xs p-1 bg-blue-500 text-gray-300 mx-1">
+                <p className="inline-block border rounded-full text-xs p-1 bg-blue-700 text-gray-300 mx-1">
                   {product.main_category_id.name}
                 </p>
               )}
@@ -106,11 +106,8 @@ const Product = ({ product }) => {
                 <p>
                   {product.discount
                     ? (
-                      (product.price -  product.discount )
-
-
-
-                        * storedDollarValue
+                        (product.price - product.discount) *
+                        storedDollarValue
                       ).toLocaleString("en-US", {
                         minimumFractionDigits: 0,
                         maximumFractionDigits: 2,
@@ -125,9 +122,9 @@ const Product = ({ product }) => {
             {token && (
               <>
                 {" "}
-                <div className="px-1 mt-2 text-sm">
+                {/* <div className="px-1 mt-2 text-sm">
                   <p>Quantity: +99</p>
-                </div>
+                </div> */}
                 <div className="flex justify-center items-end gap-5 mt-5">
                   <MdDelete
                     className="cursor-pointer"
@@ -184,7 +181,7 @@ const Product = ({ product }) => {
 
             <div className="flex justify-center gap-4">
               <button
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500"
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
                 onClick={() => deleteProduct()}
               >
                 نعم، احذف

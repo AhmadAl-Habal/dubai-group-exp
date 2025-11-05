@@ -41,10 +41,10 @@ const ProductsListing = () => {
         <>
           <div className="mb-4">
             <input
-            data-testid="Search"
+              data-testid="Search"
               dir="rtl"
               type="text"
-              placeholder="ابحث عن منتج..."
+              placeholder="ابحث عن منتج ,معالج ,كرت شاشة..."
               className="w-full p-2 border border-gray-300 rounded-full outline-none"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -66,7 +66,7 @@ const ProductsListing = () => {
           {visibleCount < filteredItems.length && (
             <div className="text-center mt-4">
               <button
-                className="bg-blue-500 text-white px-4 py-2 rounded active:bg-black"
+                className="bg-blue-700 text-white px-4 py-2 rounded active:bg-black"
                 onClick={handleLoadMore}
               >
                 عرض المزيد

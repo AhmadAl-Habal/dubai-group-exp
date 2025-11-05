@@ -113,7 +113,7 @@ const HeroImageField = ({ inputDetails, endpoint, name }) => {
                   <button
                     type="button"
                     onClick={() => clearImage(index)}
-                    className="bg-blue-500 text-white p-1 rounded text-xs w-20"
+                    className="bg-blue-700 text-white p-1 rounded text-xs w-20"
                   >
                     Clear
                   </button>
@@ -141,7 +141,7 @@ const HeroImageField = ({ inputDetails, endpoint, name }) => {
                       setSelectedIndex(index);
                       setPopupView(true);
                     }}
-                    className="flex items-center bg-blue-500 text-white p-2 rounded text-sm"
+                    className="flex items-center bg-blue-700 text-white p-2 rounded text-sm"
                   >
                     <MdDelete className="mr-1" size={18} /> Delete
                   </button>
@@ -179,7 +179,7 @@ const HeroImageField = ({ inputDetails, endpoint, name }) => {
 
             <div className="flex justify-center gap-4">
               <button
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500"
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
                 onClick={() => {
                   if (selectedIndex !== null) {
                     deleteImage(selectedIndex);

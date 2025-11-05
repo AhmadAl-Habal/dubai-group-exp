@@ -61,7 +61,7 @@ const LoginPage = () => {
             className="border rounded p-1 bg-blue-100 outline-none w-full mt-3"
           />
           {errors.username && (
-            <p className="font-bold text-blue-500">{errors.username.message}</p>
+            <p className="font-bold text-blue-700">{errors.username.message}</p>
           )}
         </div>
         <div>
@@ -73,7 +73,7 @@ const LoginPage = () => {
             className="border rounded p-1 bg-blue-100 outline-none w-full mt-3"
           />
           {errors.password && (
-            <p className="font-bold text-blue-500">{errors.password.message}</p>
+            <p className="font-bold text-blue-700">{errors.password.message}</p>
           )}
         </div>
         <div className="flex">

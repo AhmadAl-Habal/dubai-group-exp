@@ -12,7 +12,7 @@ const WelcomeSpinner = ({ motionBg, onDataFetched }) => {
         if (response.status === 200) {
           const settingsData = response.data.data[0] || {};
           sessionStorage.setItem("settings", JSON.stringify(settingsData));
-          //   onDataFetched(); // Notify App that data is loaded
+        
         }
       } catch (err) {
         console.error("Error fetching settings:", err.message);
@@ -24,7 +24,6 @@ const WelcomeSpinner = ({ motionBg, onDataFetched }) => {
     fetchData();
   }, [onDataFetched]);
 
-  //   if (!loading) return null; // Hide spinner after loading
 
   return (
     <motion.div
@@ -54,7 +53,7 @@ const WelcomeSpinner = ({ motionBg, onDataFetched }) => {
             className="text-5xl md:text-7xl font-extrabold italic"
             style={{ fontFamily: "Great Vibes, cursive" }}
           >
-            LapLobby
+            Dubai Group
           </h1>
 
           <p className="text-lg md:text-2xl mt-4 uppercase tracking-widest">

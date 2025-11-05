@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 w-full z-50">
-      <nav className="bg-blue-500 p-1 flex justify-between items-center">
+      <nav className="bg-blue-700 p-1 flex justify-between items-center">
         {/* Left Side: Sidebar Toggle & Logo */}
         <div className="flex items-center">
           <button
@@ -33,7 +33,7 @@ const Navbar = () => {
               src={logo}
               alt="React Jobs"
             />
-            <p className="font-bold text-xs">LapLobby</p>
+            <p className="font-bold text-xs">Dubai Group</p>
           </Link>
         </div>
 

@@ -184,7 +184,7 @@ const SubcategoriesList = ({ refresh, setRefresh, category }) => {
 
             <div className="flex justify-center gap-4">
               <button
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500"
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
                 onClick={() => deleteSubCategory(selectedSub._id)}
               >
                 نعم، احذف

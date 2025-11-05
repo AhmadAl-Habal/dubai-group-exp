@@ -10,19 +10,10 @@ const Sidebar = ({ isOpen, toggleSidebar, token }) => {
         className={`fixed z-50 top-0 left-0 h-screen w-9/12 max-w-sm text-white 
           transition-transform ${isOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0 pointer-events-none"}`}
       >
-        {/* Background Image with Opacity */}
-        <div
-          className="absolute inset-0 bg-blue-500 bg-cover bg-center z-0"
-          // style={{
-          //   backgroundImage: `url(${motionBg2})`,
-          //   opacity: 0.8,
-          // }}
-        ></div>
+        <div className="absolute inset-0 bg-blue-700 bg-cover bg-center z-0"></div>
 
-        {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-90 z-0"></div>
 
-        {/* Sidebar Content */}
         <div className="relative z-10 p-4">
           <button
             className="text-xl absolute top-4 left-4 focus:outline-none"
@@ -43,7 +34,7 @@ const Sidebar = ({ isOpen, toggleSidebar, token }) => {
               className="block text-lg font-medium hover:text-gray-300"
               onClick={toggleSidebar}
             >
-              عن LapLobby
+              عن Dubai Group
             </Link>
             <Link
               to="/faq"
