@@ -40,19 +40,6 @@ const SwiperCarousel = ({ images }) => {
       <Swiper
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
         effect="fade"
-        // effect="cube"
-        // modules={[Autoplay, Pagination, Navigation, EffectCube]}
-        // effect="flip"
-        // modules={[Autoplay, Pagination, Navigation, EffectFlip]}
-        // effect="coverflow"
-        // modules={[Autoplay, Pagination, Navigation, EffectCoverflow]}
-        // coverflowEffect={{
-        //   rotate: 50,
-        //   stretch: 0,
-        //   depth: 100,
-        //   modifier: 1,
-        //   slideShadows: true,
-        // }}
         speed={2000}
         spaceBetween={30}
         centeredSlides={true}
@@ -72,7 +59,7 @@ const SwiperCarousel = ({ images }) => {
             <img
               src={image}
               alt={`Slide ${index + 1}`}
-              className="w-full min-h-[400px] h-[85vh] object-cover"
+              className="w-full min-h-[400px] h-[85vh] object-contain md:object-cover"
             />
           </SwiperSlide>
         ))}

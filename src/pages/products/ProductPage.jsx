@@ -384,7 +384,7 @@ const ProductPage = () => {
           <div className="flex items-center justify-center min-h-screen overflow-y-auto">
             <div className="w-full flex justify-center items-center mb-5">
               <img
-                src={mainImage}
+                src={productDetails.images[currentImageIndex]}
                 alt="Main Product"
                 className="rounded w-4/6 h-4/6 md:h-1/6 object-contain"
               />
