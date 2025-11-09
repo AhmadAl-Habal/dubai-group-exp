@@ -8,9 +8,11 @@ const CategoriesSection = () => {
 
   return (
     <section>
-      <h2 className="text-xl font-bold bg-blue-700 mb-2 text-center py-2 rounded-full">
-        الأقسام الرئيسية
-      </h2>
+      <div className="flex justify-center">
+        <h2 className="text-lg font-bold bg-blue-700 my-2 text-center py-1 rounded-full w-[50vw]">
+          الأقسام الرئيسية{" "}
+        </h2>
+      </div>
       <div className="flex flex-row-reverse justify-end items-center mb-5 px-2 text-xs">
         {token && (
           <Link to="/add-category">

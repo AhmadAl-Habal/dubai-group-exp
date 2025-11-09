@@ -67,13 +67,17 @@ const Product = ({ product }) => {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         } flex flex-col justify-center items-center border border-white rounded-lg ${hidden ? "bg-gray-400 " : "bg-white"} p-2 shadow-lg`}
       >
-        <Link to={`/product/${product._id}`}>
-          <img
-            className="mb-3 rounded-full w-[140px] max-h-[140px]"
-            src={product.images?.[0] || "/assets/default-image.jpg"}
-            alt={product.name || "Default Product"}
-          />
-        </Link>
+       <Link to={`/product/${product._id}`}>
+ 
+  <div className="mb-3 rounded-full w-[140px] h-[140px] overflow-hidden flex items-center justify-center bg-gray-200">
+
+    <img
+      className="w-full h-full object-cover"
+      src={product.images?.[0] || "/assets/default-image.jpg"}
+      alt={product.name || "Default Product"}
+    />
+  </div>
+</Link>
         <div dir="rtl" className="w-full text-center">
           <Link to={`/product/${product._id}`}>
             <div className="mb-1">
@@ -82,6 +86,13 @@ const Product = ({ product }) => {
                 <p className="inline-block border rounded-full text-xs p-1 bg-blue-600 text-gray-300 mx-1">
                   {product.main_category_id.name}
                 </p>
+                //  <Link to={`/edit-product/${product._id}`}>
+                //     <FaEdit
+                //       size={30}
+                //       color="#d0bf4c"
+                //       className="cursor-pointer"
+                //     />
+                //   </Link>
               )}
             </div>
           </Link>

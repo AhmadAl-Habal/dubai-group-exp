@@ -47,22 +47,24 @@ const Navbar = () => {
               Admin mode!
             </Link>
           )}
-          {token ? (
+          {token && (
             <button
               className="font-bold text-xs text-black border-2 border-black p-1 rounded-full"
               onClick={logout}
             >
               Logout
             </button>
-          ) : (
-            <Link
-              to={"/login"}
-              className="font-bold text-xs text-black border-2 border-black p-1 rounded-full"
-              data-testid="login-link"
-            >
-              Login as Admin
-            </Link>
-          )}
+          )
+          // : (
+          //   <Link
+          //     to={"/login"}
+          //     className="font-bold text-xs text-black border-2 border-black p-1 rounded-full"
+          //     data-testid="login-link"
+          //   >
+          //     Login as Admin
+          //   </Link>
+          // ) 
+          }
         </div>
       </nav>
 

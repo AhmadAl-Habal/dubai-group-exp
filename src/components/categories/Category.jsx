@@ -49,13 +49,15 @@ const Category = ({ category, removeCategory }) => {
         <Link
           to={`/products/${category._id}`}
           state={{ categoryDetails: category }}
-          className=" flex flex-col items-center"
+          className="flex flex-col items-center"
         >
-          <img
-            className="mb-3 rounded-full w-[140px] h-[140px] object-cover"
-            src={category.image}
-            alt=""
-          />
+          <div className="mb-3 rounded-full w-[140px] h-[140px] overflow-hidden flex items-center justify-center bg-gray-200 flex-shrink-0">
+            <img
+              className="w-full h-full object-cover"
+              src={category.image}
+              alt={category.name}
+            />
+          </div>
           <p>{category.name}</p>
         </Link>
 

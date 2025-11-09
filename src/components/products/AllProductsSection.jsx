@@ -8,9 +8,11 @@ const AllProductsSection = () => {
 
   return (
     <section>
-      <h2 className="text-xl font-bold bg-blue-700 mb-2 text-center py-2 rounded-full">
-        جميع المنتجات
-      </h2>
+      <div className="flex justify-center">
+        <h2 className="text-lg font-bold bg-blue-700 my-2 text-center py-1 rounded-full w-[50vw]">
+          جميع المنتجات
+        </h2>
+      </div>
       <div className="flex flex-row-reverse justify-end items-center px-2 text-xs">
         {token ? (
           <Link className="" to={"/add-product"}>

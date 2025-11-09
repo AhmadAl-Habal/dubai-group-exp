@@ -9,8 +9,8 @@ const HomePage = () => {
       <div className="relative ">
         <div className="relative z-10">
           <Hero />
-          <CategoriesSection isHome={true} />
           <AllProductsSection />
+          <CategoriesSection isHome={true} />
         </div>
       </div>
     </>

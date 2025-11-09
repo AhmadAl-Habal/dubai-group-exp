@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { getSettingsRequest } from "../api/axios";
 import WarnningMessage from "../components/WarnningMessage";
-import hero from "../assets/motion2.png";
+import hero from "../assets/motion2.jpg";
 
 const MainLayout = () => {
   const location = useLocation();

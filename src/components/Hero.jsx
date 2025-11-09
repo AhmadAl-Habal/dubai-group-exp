@@ -21,9 +21,9 @@ const Hero = () => {
   return loading ? (
     <Spinner />
   ) : (
-    <div className="w-full bg-black h-[85vh] min-h-[400px] mb-5">
-      <SwiperCarousel images={heroImages} />
-    </div>
+    <div className="w-full bg-black h-[50vh] md:h-[85vh] md:min-h-[400px] mb-5">
+  <SwiperCarousel images={heroImages} />
+</div>
   );
 };
 

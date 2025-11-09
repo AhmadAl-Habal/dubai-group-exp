@@ -52,14 +52,14 @@ const SwiperCarousel = ({ images }) => {
           clickable: true,
         }}
         navigation={true}
-        className="mySwiper"
+        className="mySwiper h-full"
       >
         {images?.map((image, index) => (
-          <SwiperSlide key={index}>
+         <SwiperSlide key={index} className="h-full bg-black">
             <img
               src={image}
               alt={`Slide ${index + 1}`}
-              className="w-full min-h-[400px] h-[85vh] object-contain md:object-cover"
+              className="w-full h-full object-contain md:object-cover"
             />
           </SwiperSlide>
         ))}
