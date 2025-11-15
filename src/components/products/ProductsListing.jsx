@@ -79,8 +79,8 @@ const ProductsListing = () => {
               onChange={(e) => setSortOrder(e.target.value)}
               className="p-2 border border-gray-300 rounded-full outline-none text-gray-700"
             >
-              <option value="price-desc">الترتيب: الأغلى أولاً 💰</option>
-              <option value="price-asc">الترتيب: الأرخص أولاً 🏷️</option>
+              <option value="price-desc">الأغلى أولاً 💰</option>
+              <option value="price-asc">الأرخص أولاً 🏷️</option>
             </select>
           </div>
 
