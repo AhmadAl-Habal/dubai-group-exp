@@ -23,6 +23,7 @@ import EditCategoryPage from "./pages/categories/EditCategoryPage.jsx";
 import WelcomeSpinner from "./components/WelcomeSpinner.jsx";
 import motionBg2 from "./assets/motion2.jpg";
 import { getSettingsRequest } from "./api/axios.js";
+import ContactUsPage from "./pages/ContactUsPage.jsx";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -42,6 +43,7 @@ const AnimatedRoutes = () => {
           <Route path="/products/:id" element={<ProductsPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
+          <Route path="/contact-us" element={<ContactUsPage />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/edit-faq/:id" element={<EditFAQPage />} />
           <Route path="/add-faq" element={<AddNewFAQPage />} />
@@ -54,42 +56,31 @@ const AnimatedRoutes = () => {
   );
 };
 const getSettings = async () => {
-    try {
-        const settingsData = await getSettingsRequest();
+  try {
+    const settingsData = await getSettingsRequest();
 
-        if (settingsData) {
-            sessionStorage.setItem("dollar_value", settingsData.dollar_price);
-            sessionStorage.setItem("settings", JSON.stringify(settingsData));
-        }
-    } catch (error) {
-        console.error("Error fetching settings:", error.message);
+    if (settingsData) {
+      sessionStorage.setItem("dollar_value", settingsData.dollar_price);
+      sessionStorage.setItem("settings", JSON.stringify(settingsData));
     }
-
+  } catch (error) {
+    console.error("Error fetching settings:", error.message);
+  }
 };
 function App() {
-    const [showSpinner, setShowSpinner] = useState(true);
-  
+  const [showSpinner, setShowSpinner] = useState(true);
 
-    useEffect(() => {
-       
-        const loadInitialData = async () => {
-          
-            const timerPromise = new Promise(resolve => setTimeout(resolve, 3000));
-            
-         
-            await Promise.all([
-                getSettings(),
-                timerPromise   
-            ]);
+  useEffect(() => {
+    const loadInitialData = async () => {
+      const timerPromise = new Promise((resolve) => setTimeout(resolve, 3000));
 
-         
-            setShowSpinner(false);
-        };
+      await Promise.all([getSettings(), timerPromise]);
 
-        loadInitialData();
-        
-       
-    }, []);
+      setShowSpinner(false);
+    };
+
+    loadInitialData();
+  }, []);
   return (
     <Router>
       {showSpinner ? (

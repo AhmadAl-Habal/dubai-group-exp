@@ -71,7 +71,7 @@ const ProductsListing = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
 
-            {/* 4. إضافة قائمة منسدلة لاختيار الترتيب */}
+
             <select
               dir="rtl"
               aria-label="Sort products"
@@ -85,14 +85,14 @@ const ProductsListing = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
-            {/* 5. استخدام المصفوفة المرتبة بدلاً من المفلترة فقط */}
+           
             {sortedAndFilteredItems.length === 0 ? (
               <p className="text-white">لا يوجد عناصر مطابقة للبحث</p>
             ) : (
               sortedAndFilteredItems
                 .slice(0, visibleCount)
                 .map((product, index) => (
-                  <Product key={product.id || index} product={product} /> // يُفضل استخدام product.id كمفتاح
+                  <Product key={product.id || index} product={product} /> 
                 ))
             )}
           </div>
