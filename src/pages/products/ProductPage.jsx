@@ -130,6 +130,18 @@ const ProductPage = () => {
     setCurrentImageIndex(prevIndex);
   };
 
+const [isCopied, setIsCopied] = useState(false);
+
+const handleCopyDescription = () => {
+  if (!productDetails.description) return;
+
+  // دالة النسخ الحديثة
+  navigator.clipboard.writeText(productDetails.description).then(() => {
+    setIsCopied(true);
+    
+    setTimeout(() => setIsCopied(false), 2000);
+  });
+};
   return (
     <>
       <div className="relative min-h-[100vh]">
@@ -225,12 +237,44 @@ const ProductPage = () => {
                   {productDetails.name}
                 </h2>
 
-                {productDetails.description && (
-                  <p className="mb-4 text-gray-300 whitespace-pre-wrap leading-relaxed">
-                    <span className="font-bold text-lg mb-2 block">الوصف:</span>
-                    {productDetails.description}
-                  </p>
-                )}
+              {productDetails.description && (
+  <div className="mb-4">
+    {/* حاوية للعنوان والزر معاً */}
+    <div className="flex items-center gap-x-3 mb-2">
+      <span className="font-bold text-lg text-white">الوصف:</span>
+      
+      {/* زر النسخ */}
+      <button
+        onClick={handleCopyDescription}
+        className="flex items-center gap-1 text-sm bg-gray-700 hover:bg-gray-600 text-white py-1 px-3 rounded transition-all duration-300"
+        title="نسخ الوصف"
+      >
+        {isCopied ? (
+          <>
+            {/* أيقونة "صح" عند النجاح */}
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            <span className="text-green-400">تم النسخ</span>
+          </>
+        ) : (
+          <>
+            {/* أيقونة النسخ */}
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <span>نسخ</span>
+          </>
+        )}
+      </button>
+    </div>
+
+    {/* النص نفسه */}
+    <p className="text-gray-300 whitespace-pre-wrap leading-relaxed">
+      {productDetails.description}
+    </p>
+  </div>
+)}
                 {typeof productDetails.price === "number" &&
                   productDetails.price > 0 && (
                     <div className="mb-6">

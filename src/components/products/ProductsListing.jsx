@@ -3,6 +3,23 @@ import Product from "./Product";
 import Spinner from "../Spinner";
 import { getProducts } from "../../api/axios.js";
 
+
+// Ensures a stable React key per product so filtering/sorting/search won't mix up card state.
+// If the API doesn't provide a unique id, we generate one once when data is fetched.
+const withStableKeys = (data) => {
+  if (!Array.isArray(data)) return [];
+  return data.map((p) => {
+    const stable = p?.id ?? p?._id ?? p?.product_id ?? p?.sku ?? p?.slug;
+    if (stable !== undefined && stable !== null && String(stable).length > 0) {
+      return { ...p, __key: String(stable) };
+    }
+    const generated =
+      (typeof crypto !== "undefined" && crypto.randomUUID && crypto.randomUUID()) ||
+      `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    return { ...p, __key: generated };
+  });
+};
+
 const ProductsListing = () => {
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
@@ -18,7 +35,7 @@ const ProductsListing = () => {
     const fetchData = async () => {
       try {
         const data = await getProducts();
-        setItems(data);
+        setItems(withStableKeys(data));
       } catch (err) {
         setError(err.message);
       } finally {
@@ -92,7 +109,7 @@ const ProductsListing = () => {
               sortedAndFilteredItems
                 .slice(0, visibleCount)
                 .map((product, index) => (
-                  <Product key={product.id || index} product={product} /> 
+                  <Product key={product.__key} product={product} /> 
                 ))
             )}
           </div>
