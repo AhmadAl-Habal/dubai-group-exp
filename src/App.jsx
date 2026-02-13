@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
+
 import MainLayout from "./layouts/MainLayout.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
@@ -20,10 +21,9 @@ import AddNewFAQPage from "./pages/FAQs/AddNewFAQPage.jsx";
 import ProductsPage from "./pages/products/ProductsPage.jsx";
 import AddNewCategoryPage from "./pages/categories/AddNewCategoryPage.jsx";
 import EditCategoryPage from "./pages/categories/EditCategoryPage.jsx";
-import WelcomeSpinner from "./components/WelcomeSpinner.jsx";
-import motionBg2 from "./assets/motion2.jpg";
-import { getSettingsRequest } from "./api/axios.js";
 import ContactUsPage from "./pages/ContactUsPage.jsx";
+
+import { getSettingsRequest } from "./api/axios.js";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -55,6 +55,7 @@ const AnimatedRoutes = () => {
     </div>
   );
 };
+
 const getSettings = async () => {
   try {
     const settingsData = await getSettingsRequest();
@@ -64,30 +65,18 @@ const getSettings = async () => {
       sessionStorage.setItem("settings", JSON.stringify(settingsData));
     }
   } catch (error) {
-    console.error("Error fetching settings:", error.message);
+    console.error("Error fetching settings:", error?.message ?? error);
   }
 };
+
 function App() {
-  const [showSpinner, setShowSpinner] = useState(true);
-
   useEffect(() => {
-    const loadInitialData = async () => {
-      const timerPromise = new Promise((resolve) => setTimeout(resolve, 3000));
-
-      await Promise.all([getSettings(), timerPromise]);
-
-      setShowSpinner(false);
-    };
-
-    loadInitialData();
+    getSettings();
   }, []);
+
   return (
     <Router>
-      {showSpinner ? (
-        <WelcomeSpinner motionBg={motionBg2} />
-      ) : (
-        <AnimatedRoutes />
-      )}
+      <AnimatedRoutes />
     </Router>
   );
 }
